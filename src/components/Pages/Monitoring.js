@@ -13,6 +13,7 @@ import authHeader from "../../services/auth-header";
 import { AuthContext } from "../../App";
 import AuthService from "../../services/auth.service";
 import { Button, Modal } from "react-bootstrap";
+import { CSSTransition } from "react-transition-group";
 
 const Monitoring = () => {
   //   const [comments, setComments] = useState([]);
@@ -28,6 +29,7 @@ const Monitoring = () => {
   //   const [connection, setConnection] = useState(null);
   //   const { state } = useContext(AuthContext);
   //   const ITEMS_PER_PAGE = 50;
+  const nodeRef = React.useRef(null);
 
   //   const headers = [
   //     { name: "No#", sortable: false },
@@ -173,7 +175,7 @@ const Monitoring = () => {
 
   const [show, setShow] = useState(false);
   //   const [idprob, setIdprob] = useState(0);
-  //   const [flag, setFlag] = useState(0);
+  const [flag, setFlag] = useState(0);
   //   const [dataconfirm, setDataconfirm] = useState("");
 
   const handleConfirm = () => {
@@ -394,44 +396,46 @@ const Monitoring = () => {
                       Trouble
                     </label>
                     <div className="col-sm-8">
-                      <input type="text" className="form-control" disabled />
+                      <textarea className="form-control" disabled />
                     </div>
                   </div>
                 </div>
-                {/* /.card-body */}
-                <div className="card-body">
-                  <form className="form-horizontal">
-                    <div className="card-body">
-                      <div className="form-group row">
-                        <label>Trouble Solving</label>
-                        <div className="row">
-                          <div className="col-sm-4">
-                            <input
-                              type="text"
-                              onKeyPress={keyInputnik}
-                              className="form-control"
-                            />
-                          </div>
-                          <div className="col-sm-8">
-                            <input
-                              type="text"
-                              className="form-control"
-                              disabled
-                            />
+
+                {flag > 0 && (
+                  <div className="card-body">
+                    <div className="form-horizontal">
+                      <div className="card-body">
+                        <div className="form-group row">
+                          <label>Trouble Solving</label>
+                          <div className="row">
+                            <div className="col-sm-4">
+                              <input
+                                type="text"
+                                onKeyPress={keyInputnik}
+                                className="form-control"
+                              />
+                            </div>
+                            <div className="col-sm-8">
+                              <input
+                                type="text"
+                                className="form-control"
+                                disabled
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="form-group row">
-                        <label>Trouble Solving</label>
-                        <textarea
-                          id="descsolved"
-                          type="text"
-                          className="form-control"
-                        />
+                        <div className="form-group row">
+                          <label>Trouble Solving</label>
+                          <textarea
+                            id="descsolved"
+                            type="text"
+                            className="form-control"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                )}
               </form>
             </div>
           </Modal.Body>
